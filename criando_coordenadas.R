@@ -25,7 +25,8 @@ dados
 dados %<>%
   dplyr::mutate(long = long |> parzer::parse_lon(),
                 lat = lat |> parzer::parse_lat()) %<>%
-  dplyr::select(4:5)
+  dplyr::select(4:5) %<>%
+  dplyr::relocate(long, .before = lat)
 
 dados
 
