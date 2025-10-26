@@ -42,7 +42,7 @@ coord <- readxl::read_xlsx("coordinates.xlsx")
 ## Visualizing
 
 ```{r}
-coord
+coord |> as.data.frame()
 
 coord |> dplyr::glimpse()
 ```
@@ -75,7 +75,7 @@ coord_calcule <- function(id){
 ```{r}
 purrr::walk(1:nrow(coord), coord_calcule)
 
-coord
+coord |> as.data.frame()
 ```
 
 ## Converting to a shapefile 
