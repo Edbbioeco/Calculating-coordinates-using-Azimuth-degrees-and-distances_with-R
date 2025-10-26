@@ -1,4 +1,4 @@
-# Calculating coordinates based on Azhimute degrees and distances
+# Calculating coordinates based on Azhimute degrees and distances with R
 
 ``` math
 
@@ -171,3 +171,4 @@ ggplot() +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
