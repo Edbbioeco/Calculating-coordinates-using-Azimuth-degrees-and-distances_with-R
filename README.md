@@ -18,7 +18,7 @@ curvature and radius:
 
 - $`\varphi_{2}`$: Final latitude;
 
-- $`\varphi_{2}`$: Initial latitude;
+- $`\varphi_{1}`$: Initial latitude;
 
 - $`\theta`$: Azimuth degrees;
 
@@ -26,7 +26,7 @@ curvature and radius:
 
 - $`\lambda_{2}`$: Final longitude;
 
-- $`\lambda_{2}`$: Initial longitude;
+- $`\lambda_{1}`$: Initial longitude;
 
 # Packages
 
@@ -206,3 +206,4 @@ ggplot() +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
