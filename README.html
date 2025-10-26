@@ -357,19 +357,34 @@ display: none;
 </div>
 
 
-<div id="calculating-coordinates-based-on-azhimute-degrees-and-distances" class="section level1">
-<h1>Calculating coordinates based on Azhimute degrees and distances</h1>
+<div id="calculating-coordinates-based-on-azimuth-degrees-and-distances-with-r" class="section level1">
+<h1>Calculating coordinates based on Azimuth degrees and distances with
+R</h1>
+<p>In geospatial analysis, an useful tooç is calculate a geographic
+coordinate, using only <a href="https://en.wikipedia.org/wiki/Azimuth#:~:text=The%20azimuth%20is%20the%20angle%20between%20the%20north%20vector%20and,mapping%2C%20mining%2C%20and%20ballistics">Azimuth
+degrees</a> and distances between the points. It is possible throught
+earth curvature and radius:</p>
 <p><span class="math display">\[
-\varphi_{2} = \arcsin \left ( \sin(\varphi_{1}) * \cos \left
-(\frac{d}{R} \right) + \cos \left (\varphi_{1} \right) * \sin \left
-(\frac{d}{R} \right) * \cos \left (\theta \right) \right)
+\varphi_{2} = \varphi_{1} + \sin \left(\left(90 - \theta \right) *
+\frac{\pi}{180} \right) * d
 \]</span></p>
 <p><span class="math display">\[
-\lambda_{2} = \lambda_{1} + \arctan^2 \left(\sin \left(\theta \right) *
-\sin \left(\frac{d}{R} \right) * \cos \left (\varphi_{1} \right) * \cos
-\left (\frac{d}{R} \right) - \sin(\varphi_{1}) *
-\sin(\varphi_{2})\right)
+\lambda_{2} = \lambda_{1} + \cos \left(\left(90 - \theta \right) *
+\frac{\pi}{180} \right) * d
 \]</span></p>
+<ul>
+<li><p><span class="math inline">\(\varphi_{2}\)</span>: Final
+latitude;</p></li>
+<li><p><span class="math inline">\(\varphi_{2}\)</span>: Initial
+latitude;</p></li>
+<li><p><span class="math inline">\(\theta\)</span>: Azimuth
+degrees;</p></li>
+<li><p><span class="math inline">\(d\)</span>: distance;</p></li>
+<li><p><span class="math inline">\(\lambda_{2}\)</span>: Final
+longitude;</p></li>
+<li><p><span class="math inline">\(\lambda_{2}\)</span>: Initial
+longitude;</p></li>
+</ul>
 </div>
 <div id="packages" class="section level1">
 <h1>Packages</h1>
@@ -444,6 +459,20 @@ library(sf)</code></pre>
 <h1>Calculating coordinates</h1>
 <div id="creating-a-coordinates-calculating-function" class="section level2">
 <h2>Creating a coordinates calculating function</h2>
+<p>As we wante to calculate to multiple rows, but rows valued as NA, we
+build a function that identify whether a row to longitude or latitude
+are NA, using <code>if(){}</code> conditional loop. <code>id</code>
+variable are a row identification, from 1 to rows count. Detecting a NA
+row, the function calculate coordinates, throught
+<code>geosphere::destPoint()</code> R function, where:</p>
+<ul>
+<li><p>p: coordinate, on idrow - 1 and 1st and 2nd column;</p></li>
+<li><p>b: Azimuth degree, on idrowe - 1 and 3rd column;</p></li>
+<li><p>d: distance: on idrow - 1 and 4th column.</p></li>
+</ul>
+<p>When a coordinate are calculated, longitude
+(<code>coordinate[1]</code>) and latitude (<code>coordinate[2]</code>)
+are aditioned to long and lat columns on its respective row.</p>
 <pre class="r"><code>coord_calcule &lt;- function(id){
   
   if(coord$long[id] |&gt; is.na() | coord$lat[id] |&gt; is.na()){

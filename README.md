@@ -1,14 +1,32 @@
-# Calculating coordinates based on Azhimute degrees and distances with R
+# Calculating coordinates based on Azimuth degrees and distances with R
+
+In geospatial analysis, an useful tooç is calculate a geographic
+coordinate, using only [Azimuth
+degrees](https://en.wikipedia.org/wiki/Azimuth#:~:text=The%20azimuth%20is%20the%20angle%20between%20the%20north%20vector%20and,mapping%2C%20mining%2C%20and%20ballistics)
+and distances between the points. It is possible throught earth
+curvature and radius:
 
 ``` math
 
-\varphi_{2} = \arcsin \left ( \sin(\varphi_{1}) * \cos \left (\frac{d}{R} \right) + \cos \left (\varphi_{1} \right) * \sin \left (\frac{d}{R} \right) * \cos \left (\theta \right) \right)
+\varphi_{2} = \varphi_{1} + \sin \left(\left(90 - \theta \right) * \frac{\pi}{180} \right) * d
 ```
 
 ``` math
 
-\lambda_{2} = \lambda_{1} + \arctan^2 \left(\sin \left(\theta \right) * \sin \left(\frac{d}{R} \right) * \cos \left (\varphi_{1} \right) * \cos \left (\frac{d}{R} \right) - \sin(\varphi_{1}) * \sin(\varphi_{2})\right)
+\lambda_{2} = \lambda_{1} + \cos \left(\left(90 - \theta \right) * \frac{\pi}{180} \right) * d
 ```
+
+- $`\varphi_{2}`$: Final latitude;
+
+- $`\varphi_{2}`$: Initial latitude;
+
+- $`\theta`$: Azimuth degrees;
+
+- $`d`$: distance;
+
+- $`\lambda_{2}`$: Final longitude;
+
+- $`\lambda_{2}`$: Initial longitude;
 
 # Packages
 
@@ -82,6 +100,23 @@ coord |> dplyr::glimpse()
 # Calculating coordinates
 
 ## Creating a coordinates calculating function
+
+As we wante to calculate to multiple rows, but rows valued as NA, we
+build a function that identify whether a row to longitude or latitude
+are NA, using `if(){}` conditional loop. `id` variable are a row
+identification, from 1 to rows count. Detecting a NA row, the function
+calculate coordinates, throught `geosphere::destPoint()` R function,
+where:
+
+- p: coordinate, on idrow - 1 and 1st and 2nd column;
+
+- b: Azimuth degree, on idrowe - 1 and 3rd column;
+
+- d: distance: on idrow - 1 and 4th column.
+
+When a coordinate are calculated, longitude (`coordinate[1]`) and
+latitude (`coordinate[2]`) are aditioned to long and lat columns on its
+respective row.
 
 ``` r
 coord_calcule <- function(id){
@@ -170,5 +205,4 @@ ggplot() +
   geom_sf(data = coord_sf)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
-
+![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
