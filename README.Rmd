@@ -1,0 +1,49 @@
+---
+title: "Calculatibg Coordinates"
+author: "Edson Silva-Júnior"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Calculating coordinates based on Azhimute degrees and distances
+
+$$
+\varphi_{2} = \arcsin \left ( \sin(\varphi_{1}) * \cos \left (\frac{d}{R} \right) + \cos \left (\varphi_{1} \right) * \sin \left (\frac{d}{R} \right) * \cos \left (\theta \right) \right)
+$$
+
+$$
+\lambda_{2} = \lambda_{1} + \arctan^2 \left(\sin \left(\theta \right) * \sin \left(\frac{d}{R} \right) * \cos \left (\varphi_{1} \right) * \cos \left (\frac{d}{R} \right) - \sin(\varphi_{1}) * \sin(\varphi_{2})\right)
+$$
+
+# Packages
+
+```{r}
+library(readxl)
+
+library(tidyverse)
+
+library(geosphere)
+
+library(sf)
+```
+
+# Data 
+
+## Importing
+
+```{r}
+coord <- readxl::read_xlsx("coordinates.xlsx")
+```
+
+## Visualizing
+
+```{r}
+coord
+
+coord |> dplyr::glimpse()
+```
+
