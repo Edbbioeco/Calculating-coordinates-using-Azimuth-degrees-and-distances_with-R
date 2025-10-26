@@ -73,8 +73,27 @@ coord_calcule <- function(id){
 ## Executing loop
 
 ```{r}
-purrr::map(1:nrow(coord), coord_calcule)
+purrr::walk(1:nrow(coord), coord_calcule)
 
 coord
+```
+
+## Converting to a shapefile 
+
+```{r}
+coord_sf <- coord |> 
+  sf::st_as_sf(coords = c("long", "lat"),
+               crs = 4674) |> 
+  dplyr::summarise(do_union = TRUE) |> 
+  sf::st_cast("LINESTRING")
+
+coord_sf
+```
+
+## Visualizing as a map
+
+```{r}
+ggplot() +
+  geom_sf(data = coord_sf)
 ```
 
