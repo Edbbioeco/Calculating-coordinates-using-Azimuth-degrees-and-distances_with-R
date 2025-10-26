@@ -18,7 +18,7 @@ curvature and radius:
 
 - $`\varphi_{2}`$: Final latitude;
 
-- $`\varphi_{1}`$: Initial latitude;
+- $`\varphi_{2}`$: Initial latitude;
 
 - $`\theta`$: Azimuth degrees;
 
@@ -26,9 +26,21 @@ curvature and radius:
 
 - $`\lambda_{2}`$: Final longitude;
 
-- $`\lambda_{1}`$: Initial longitude;
+- $`\lambda_{2}`$: Initial longitude;
 
-# Packages
+# Required packages
+
+To calculate coordinates, we use the required packages:
+
+- [readxl](https://readxl.tidyverse.org): to import our data;
+
+- [tidyverse](https://tidyverse.tidyverse.org/): to transform and
+  visualize data and run loop to calculate multiples coordinates;
+
+- [geosphere](https://readxl.tidyverse.org): to calculate coordinates.
+
+- [sf](https://r-spatial.github.io/sf): to transform table data into a
+  shapefile.
 
 ``` r
 library(readxl)
@@ -108,11 +120,11 @@ identification, from 1 to rows count. Detecting a NA row, the function
 calculate coordinates, throught `geosphere::destPoint()` R function,
 where:
 
-- p: coordinate, on idrow - 1 and 1st and 2nd column;
+- p: coordinate, on idth row - 1 and 1st and 2nd column;
 
-- b: Azimuth degree, on idrowe - 1 and 3rd column;
+- b: Azimuth degree, on idth rowe - 1 and 3rd column;
 
-- d: distance: on idrow - 1 and 4th column.
+- d: distance: on idth row - 1 and 4th column.
 
 When a coordinate are calculated, longitude (`coordinate[1]`) and
 latitude (`coordinate[2]`) are aditioned to long and lat columns on its
@@ -137,6 +149,9 @@ coord_calcule <- function(id){
 ```
 
 ## Executing loop
+
+To execute a repeat loop, we use `walk()`, from `purrr` r package, firts
+informing the variable id and next the build function.
 
 ``` r
 purrr::walk(1:nrow(coord), coord_calcule)
@@ -205,5 +220,4 @@ ggplot() +
   geom_sf(data = coord_sf)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
-
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->

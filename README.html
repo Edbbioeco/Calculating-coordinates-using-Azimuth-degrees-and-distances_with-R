@@ -386,8 +386,20 @@ longitude;</p></li>
 longitude;</p></li>
 </ul>
 </div>
-<div id="packages" class="section level1">
-<h1>Packages</h1>
+<div id="required-packages" class="section level1">
+<h1>Required packages</h1>
+<p>To calculate coordinates, we use the required packages:</p>
+<ul>
+<li><p><a href="https://readxl.tidyverse.org">readxl</a>: to import our
+data;</p></li>
+<li><p><a href="https://tidyverse.tidyverse.org/">tidyverse</a>: to
+transform and visualize data and run loop to calculate multiples
+coordinates;</p></li>
+<li><p><a href="https://readxl.tidyverse.org">geosphere</a>: to
+calculate coordinates.</p></li>
+<li><p><a href="https://r-spatial.github.io/sf">sf</a>: to transform
+table data into a shapefile.</p></li>
+</ul>
 <pre class="r"><code>library(readxl)
 
 library(tidyverse)</code></pre>
@@ -466,9 +478,9 @@ variable are a row identification, from 1 to rows count. Detecting a NA
 row, the function calculate coordinates, throught
 <code>geosphere::destPoint()</code> R function, where:</p>
 <ul>
-<li><p>p: coordinate, on idrow - 1 and 1st and 2nd column;</p></li>
-<li><p>b: Azimuth degree, on idrowe - 1 and 3rd column;</p></li>
-<li><p>d: distance: on idrow - 1 and 4th column.</p></li>
+<li><p>p: coordinate, on idth row - 1 and 1st and 2nd column;</p></li>
+<li><p>b: Azimuth degree, on idth rowe - 1 and 3rd column;</p></li>
+<li><p>d: distance: on idth row - 1 and 4th column.</p></li>
 </ul>
 <p>When a coordinate are calculated, longitude
 (<code>coordinate[1]</code>) and latitude (<code>coordinate[2]</code>)
@@ -491,6 +503,9 @@ are aditioned to long and lat columns on its respective row.</p>
 </div>
 <div id="executing-loop" class="section level2">
 <h2>Executing loop</h2>
+<p>To execute a repeat loop, we use <code>walk()</code>, from
+<code>purrr</code> r package, firts informing the variable id and next
+the build function.</p>
 <pre class="r"><code>purrr::walk(1:nrow(coord), coord_calcule)
 
 coord |&gt; as.data.frame()</code></pre>
