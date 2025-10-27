@@ -70,26 +70,26 @@ Next, lets visualize our data.
 coord
 ```
 
-    ## # A tibble: 30 × 4
-    ##     long   lat azimuthe distance
-    ##    <dbl> <dbl>    <dbl>    <dbl>
-    ##  1 -35.2 -8.04    66.3     173. 
-    ##  2  NA   NA      -25.6     143. 
-    ##  3  NA   NA     -164.      213. 
-    ##  4  NA   NA        9.47    235. 
-    ##  5  NA   NA      129.       43.4
-    ##  6  NA   NA      118.      103. 
-    ##  7  NA   NA       28.0      62.6
-    ##  8  NA   NA       57.8      42.7
-    ##  9  NA   NA     -142.      116. 
-    ## 10  NA   NA       87.0     200. 
-    ## # ℹ 20 more rows
+    ## # A tibble: 30 x 4
+    ##     long   lat azimuth distance
+    ##    <dbl> <dbl>   <dbl>    <dbl>
+    ##  1 -35.2 -8.04   66.3     173. 
+    ##  2  NA   NA     -25.6     143. 
+    ##  3  NA   NA    -164.      213. 
+    ##  4  NA   NA       9.47    235. 
+    ##  5  NA   NA     129.       43.4
+    ##  6  NA   NA     118.      103. 
+    ##  7  NA   NA      28.0      62.6
+    ##  8  NA   NA      57.8      42.7
+    ##  9  NA   NA    -142.      116. 
+    ## 10  NA   NA      87.0     200. 
+    ## # i 20 more rows
 
 ``` r
 coord |> as.data.frame()
 ```
 
-    ##         long       lat    azimuthe  distance
+    ##         long       lat     azimuth  distance
     ## 1  -35.19630 -8.041286   66.266246 173.26567
     ## 2         NA        NA  -25.554144 142.67860
     ## 3         NA        NA -163.605537 212.63355
@@ -171,7 +171,7 @@ purrr::walk(1:nrow(coord), coord_calcule)
 coord |> as.data.frame()
 ```
 
-    ##         long       lat    azimuthe  distance
+    ##         long       lat     azimuth  distance
     ## 1  -35.19630 -8.041286   66.266246 173.26567
     ## 2  -35.19486 -8.040656  -25.554144 142.67860
     ## 3  -35.19542 -8.039492 -163.605537 212.63355
@@ -224,10 +224,10 @@ coord_sf
     ## Dimension:     XY
     ## Bounding box:  xmin: -35.20029 ymin: -8.041972 xmax: -35.19273 ymax: -8.033542
     ## Geodetic CRS:  SIRGAS 2000
-    ## # A tibble: 1 × 1
+    ## # A tibble: 1 x 1
     ##                                                                        geometry
-    ##                                                                <LINESTRING [°]>
-    ## 1 (-35.1963 -8.041286, -35.19486 -8.040656, -35.19542 -8.039492, -35.19597 -8.…
+    ##                                                               <LINESTRING [B0]>
+    ## 1 (-35.1963 -8.041286, -35.19486 -8.040656, -35.19542 -8.039492, -35.19597 -8.~
 
 ## Visualizing as a map
 
@@ -236,4 +236,4 @@ ggplot() +
   geom_sf(data = coord_sf)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->

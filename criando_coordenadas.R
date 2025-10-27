@@ -39,7 +39,7 @@ calcular_graus <- function(x){
   graus <- geosphere::finalBearing(dados[x - 1, 1:2],
                                    dados[x, 1:2])
 
-  dados$azimuthe[x -1] <<- graus
+  dados$azimuth[x -1] <<- graus
 
 }
 

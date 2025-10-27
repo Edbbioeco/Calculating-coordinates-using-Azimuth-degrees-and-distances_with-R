@@ -431,21 +431,21 @@ library(sf)</code></pre>
 <p>Next, lets visualize our data.</p>
 <pre class="r"><code>coord</code></pre>
 <pre><code>## # A tibble: 30 × 4
-##     long   lat azimuthe distance
-##    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1 -35.2 -8.04    66.3     173. 
-##  2  NA   NA      -25.6     143. 
-##  3  NA   NA     -164.      213. 
-##  4  NA   NA        9.47    235. 
-##  5  NA   NA      129.       43.4
-##  6  NA   NA      118.      103. 
-##  7  NA   NA       28.0      62.6
-##  8  NA   NA       57.8      42.7
-##  9  NA   NA     -142.      116. 
-## 10  NA   NA       87.0     200. 
+##     long   lat azimuth distance
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 -35.2 -8.04   66.3     173. 
+##  2  NA   NA     -25.6     143. 
+##  3  NA   NA    -164.      213. 
+##  4  NA   NA       9.47    235. 
+##  5  NA   NA     129.       43.4
+##  6  NA   NA     118.      103. 
+##  7  NA   NA      28.0      62.6
+##  8  NA   NA      57.8      42.7
+##  9  NA   NA    -142.      116. 
+## 10  NA   NA      87.0     200. 
 ## # ℹ 20 more rows</code></pre>
 <pre class="r"><code>coord |&gt; as.data.frame()</code></pre>
-<pre><code>##         long       lat    azimuthe  distance
+<pre><code>##         long       lat     azimuth  distance
 ## 1  -35.19630 -8.041286   66.266246 173.26567
 ## 2         NA        NA  -25.554144 142.67860
 ## 3         NA        NA -163.605537 212.63355
@@ -520,7 +520,7 @@ the build function.</p>
 <pre class="r"><code>purrr::walk(1:nrow(coord), coord_calcule)
 
 coord |&gt; as.data.frame()</code></pre>
-<pre><code>##         long       lat    azimuthe  distance
+<pre><code>##         long       lat     azimuth  distance
 ## 1  -35.19630 -8.041286   66.266246 173.26567
 ## 2  -35.19486 -8.040656  -25.554144 142.67860
 ## 3  -35.19542 -8.039492 -163.605537 212.63355
