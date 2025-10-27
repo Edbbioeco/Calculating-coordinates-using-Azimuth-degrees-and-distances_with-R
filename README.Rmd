@@ -119,7 +119,7 @@ coord |> as.data.frame()
 coord_sf <- coord |> 
   sf::st_as_sf(coords = c("long", "lat"),
                crs = 4674) |> 
-  dplyr::summarise(do_union = TRUE) |> 
+  dplyr::summarise(do_union = FALSE) |> 
   sf::st_cast("LINESTRING")
 
 coord_sf
