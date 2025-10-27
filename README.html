@@ -422,10 +422,13 @@ library(sf)</code></pre>
 <h1>Data</h1>
 <div id="importing" class="section level2">
 <h2>Importing</h2>
+<p>We use <code>read_xlsx()</code> function to import our data, from
+<code>readxl</code> package.</p>
 <pre class="r"><code>coord &lt;- readxl::read_xlsx(&quot;coordinates.xlsx&quot;)</code></pre>
 </div>
 <div id="visualizing" class="section level2">
 <h2>Visualizing</h2>
+<p>Next, lets visualize our data.</p>
 <pre class="r"><code>coord</code></pre>
 <pre><code>## # A tibble: 30 × 4
 ##     long   lat azimuthe distance
@@ -549,8 +552,12 @@ coord |&gt; as.data.frame()</code></pre>
 ## 29 -35.19620 -8.040019  102.568789  36.70519
 ## 30 -35.19587 -8.040092   66.266246 173.26567</code></pre>
 </div>
-<div id="converting-to-a-shapefile" class="section level2">
-<h2>Converting to a shapefile</h2>
+<div id="converting-coordinates-dataframe-into-a-shapefile" class="section level2">
+<h2>Converting coordinates dataframe into a shapefile</h2>
+<p>Next, we can transform our dtaframe into a shapefile, to a visualize
+traject. We use <code>sf</code> package. throught
+<code>st_as_sf()</code> and <code>st_cast()</code> functions to turn our
+dataframe into a shapefile.</p>
 <pre class="r"><code>coord_sf &lt;- coord |&gt; 
   sf::st_as_sf(coords = c(&quot;long&quot;, &quot;lat&quot;),
                crs = 4674) |&gt; 

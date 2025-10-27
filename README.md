@@ -56,11 +56,15 @@ library(sf)
 
 ## Importing
 
+We use `read_xlsx()` function to import our data, from `readxl` package.
+
 ``` r
 coord <- readxl::read_xlsx("coordinates.xlsx")
 ```
 
 ## Visualizing
+
+Next, lets visualize our data.
 
 ``` r
 coord
@@ -199,7 +203,11 @@ coord |> as.data.frame()
     ## 29 -35.19620 -8.040019  102.568789  36.70519
     ## 30 -35.19587 -8.040092   66.266246 173.26567
 
-## Converting to a shapefile
+## Converting coordinates dataframe into a shapefile
+
+Next, we can transform our dtaframe into a shapefile, to a visualize
+traject. We use `sf` package. throught `st_as_sf()` and `st_cast()`
+functions to turn our dataframe into a shapefile.
 
 ``` r
 coord_sf <- coord |> 
@@ -228,4 +236,4 @@ ggplot() +
   geom_sf(data = coord_sf)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
