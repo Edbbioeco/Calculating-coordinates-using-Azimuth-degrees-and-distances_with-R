@@ -66,9 +66,9 @@ coord <- readxl::read_xlsx("coordinates.xlsx")
 ## Visualizing
 
 ```{r}
-coord |> as.data.frame()
+coord
 
-coord |> dplyr::glimpse()
+coord |> as.data.frame()
 ```
 
 # Calculating coordinates 

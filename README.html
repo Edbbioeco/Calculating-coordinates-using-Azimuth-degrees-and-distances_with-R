@@ -426,6 +426,21 @@ library(sf)</code></pre>
 </div>
 <div id="visualizing" class="section level2">
 <h2>Visualizing</h2>
+<pre class="r"><code>coord</code></pre>
+<pre><code>## # A tibble: 30 × 4
+##     long   lat azimuthe distance
+##    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+##  1 -35.2 -8.04    66.3     173. 
+##  2  NA   NA      -25.6     143. 
+##  3  NA   NA     -164.      213. 
+##  4  NA   NA        9.47    235. 
+##  5  NA   NA      129.       43.4
+##  6  NA   NA      118.      103. 
+##  7  NA   NA       28.0      62.6
+##  8  NA   NA       57.8      42.7
+##  9  NA   NA     -142.      116. 
+## 10  NA   NA       87.0     200. 
+## # ℹ 20 more rows</code></pre>
 <pre class="r"><code>coord |&gt; as.data.frame()</code></pre>
 <pre><code>##         long       lat    azimuthe  distance
 ## 1  -35.19630 -8.041286   66.266246 173.26567
@@ -458,13 +473,6 @@ library(sf)</code></pre>
 ## 28        NA        NA  -71.164384  32.35266
 ## 29        NA        NA  102.568789  36.70519
 ## 30        NA        NA   66.266246 173.26567</code></pre>
-<pre class="r"><code>coord |&gt; dplyr::glimpse()</code></pre>
-<pre><code>## Rows: 30
-## Columns: 4
-## $ long     &lt;dbl&gt; -35.19630, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ lat      &lt;dbl&gt; -8.041286, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ azimuthe &lt;dbl&gt; 66.266246, -25.554144, -163.605537, 9.468649, 129.068205, 118…
-## $ distance &lt;dbl&gt; 173.26567, 142.67860, 212.63355, 234.52521, 43.38277, 102.670…</code></pre>
 </div>
 </div>
 <div id="calculating-coordinates" class="section level1">
