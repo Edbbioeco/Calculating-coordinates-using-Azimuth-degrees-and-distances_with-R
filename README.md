@@ -228,4 +228,4 @@ ggplot() +
   geom_sf(data = coord_sf)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
