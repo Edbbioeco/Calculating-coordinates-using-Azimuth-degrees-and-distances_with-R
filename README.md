@@ -162,7 +162,7 @@ coord_calcule <- function(id){
 
 ## Executing loop
 
-To execute a repeat loop, we use `walk()`, from `purrr` r package, firts
+To execute a repeat loop, we use `walk()`, from `purrr` r package, first
 informing the variable id and next the build function.
 
 ``` r
@@ -237,3 +237,4 @@ ggplot() +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
